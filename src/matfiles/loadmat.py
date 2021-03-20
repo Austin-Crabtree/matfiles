@@ -41,6 +41,10 @@ def loadmat(filename: Optional[str, Path]) -> Optional[Dict]:
             groups.remove('#refs#')
         except ValueError:
             pass
+        for group in groups:
+            set = matfile['group']
+            if isinstance(set, h5py._hl.group.Group):
+                print(f'Is group {set.name}')
 
         return contents
     else:
